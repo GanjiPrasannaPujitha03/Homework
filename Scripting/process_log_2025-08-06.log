@@ -1,0 +1,13 @@
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+     2567    2565    2565       9476  cons7     197609 13:43:13 /usr/bin/ps
+      557       1     557      27900  cons0     197609 09:45:17 /usr/bin/bash
+      569       1     569       2140  cons3     197609 09:45:18 /usr/bin/bash
+     2260       1    2260      21668  cons6     197609 12:50:40 /usr/bin/bash
+      568       1     568      13972  cons2     197609 09:45:18 /usr/bin/bash
+     2076    2075    2076      25832  pty0      197609 12:32:52 /usr/bin/bash
+      805       1     805      27476  cons5     197609 09:49:31 /usr/bin/bash
+      556       1     556       8672  cons1     197609 09:45:17 /usr/bin/bash
+      572       1     572      18840  cons4     197609 09:45:18 /usr/bin/bash
+     2506       1    2506      24364  cons7     197609 13:39:56 /usr/bin/bash
+     2075       1    2075      26156  ?         197609 12:32:52 /usr/bin/mintty
+     2565    2506    2565       3844  cons7     197609 13:43:13 /usr/bin/bash
