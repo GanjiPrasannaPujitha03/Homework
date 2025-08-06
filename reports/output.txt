@@ -1,0 +1,4 @@
+Created folder: reports
+Moving .txt files to 'reports' folder...
+Found: output.txt
+Found: txt_files_output.txt

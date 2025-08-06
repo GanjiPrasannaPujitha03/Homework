@@ -1,0 +1,3 @@
+permanent value is 25
+This is a permanent file
+This line is permanent

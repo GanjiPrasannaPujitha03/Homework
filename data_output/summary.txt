@@ -1,0 +1,8 @@
+Filename: sample1.txt
+Lines (excluding comments): 3
+Words (excluding comments): 13
+
+Filename: sample2.txt
+Lines (excluding comments): 2
+Words (excluding comments): 9
+

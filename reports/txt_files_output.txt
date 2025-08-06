@@ -1,0 +1,3 @@
+List of .txt files in current directory:
+output.txt
+txt_files_output.txt
