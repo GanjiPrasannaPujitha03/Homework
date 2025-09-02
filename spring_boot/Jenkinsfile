@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        NAMESPACE = 'pujitha-namespace'
+        IMAGE = 'ganjiprasannapujitha03/spring-boot-demo:latest'
+        AWS_REGION = 'eu-west-3'
+        EKS_CLUSTER = 'batch4-team1-eks-cluster'
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Configure Kubeconfig') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-eks-creds']]) {
+                    sh """
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                        export AWS_DEFAULT_REGION=${AWS_REGION}
+                        aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}
+                    """
+                }
+            }
+        }
+
+        stage('Deploy Spring Boot App') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-eks-creds']]) {
+                    sh """
+                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                        export AWS_DEFAULT_REGION=${AWS_REGION}
+                        
+                        # Create namespace
+                        kubectl create namespace ${NAMESPACE} --dry-run=client -o yaml | kubectl apply -f -
+                        
+                        # Deploy app and service
+                        kubectl apply -f springboot-deployment.yaml -n ${NAMESPACE}
+                        kubectl apply -f springboot-service.yaml -n ${NAMESPACE}
+                        
+                        # Verify
+                        kubectl get pods -n ${NAMESPACE}
+                        kubectl get svc -n ${NAMESPACE}
+                    """
+                }
+            }
+        }
+    }
+}
