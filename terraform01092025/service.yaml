@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+  namespace: pujitha-namespace # replace with your namespace parameter
+spec:
+  type: NodePort
+  selector:
+    app: springboot-app
+  ports:
+    - protocol: TCP
+      port: 8080          # internal cluster port
+      targetPort: 8080    # container port
+      nodePort: 30080     # NodePort on worker nodes (30000-32767)
